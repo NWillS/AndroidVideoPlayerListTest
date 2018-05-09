@@ -32,6 +32,19 @@ public class VideoPlayerActivity extends AppCompatActivity {
 
         videoView = (VideoView) findViewById(R.id.videoView);
         MediaController mc = new MediaController(this);
+        mc.setPrevNextListeners(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Handle next click here
+                next();
+            }
+        }, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Handle previous click here
+                prev();
+            }
+        });
         videoView.setMediaController(mc);
         play(position);
     }
@@ -49,5 +62,18 @@ public class VideoPlayerActivity extends AppCompatActivity {
         videoView.start();
         playing = row;
     }
-
+    private void next(){
+        int row = 0;
+        if(playing + 1 < list.size()){
+            row = playing + 1;
+        }
+        play(row);
+    }
+    private void prev(){
+        int row = list.size() - 1;
+        if(playing - 1 > 0){
+            row = playing - 1;
+        }
+        play(row);
+    }
 }
