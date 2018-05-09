@@ -73,7 +73,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
     }
     private void prev(){
         int row = list.size() - 1;
-        if(playing - 1 > 0){
+        if(playing > 0){
             row = playing - 1;
         }
         play(row);
