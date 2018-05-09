@@ -5,19 +5,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import com.example.devwill.androidvideoplayerlisttest.R;
 import com.example.devwill.androidvideoplayerlisttest.VideoList;
 import com.example.devwill.androidvideoplayerlisttest.VideoPlayer.VideoPlayerActivity;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity implements VideoListRecycleViewAdapter.VideoAdapterListener {
-    private VideoListRecycleViewAdapter adapter;
-    private List<RowData> videoList;
+
+    private static final Pattern COMPILE = Pattern.compile("_", Pattern.LITERAL);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +25,12 @@ public class MainActivity extends AppCompatActivity implements VideoListRecycleV
         setContentView(R.layout.activity_main);
 
         RecyclerView rv = (RecyclerView) findViewById(R.id.recyclerView);
-        adapter = new VideoListRecycleViewAdapter();
+        VideoListRecycleViewAdapter adapter = new VideoListRecycleViewAdapter();
         adapter.setListener(this);
 
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rv.setHasFixedSize(true);
-        rv.getItemAnimator().setChangeDuration(0);
+        rv.getItemAnimator().setChangeDuration(0L);
         rv.setLayoutManager(llm);
         rv.setAdapter(adapter);
 
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements VideoListRecycleV
         idList.add(R.raw.wait_for_it);
         idList.add(R.raw.when_she_says_her_parents_arent_home);
 
-        videoList = new ArrayList<>();
+        List<RowData> videoList = new ArrayList<>();
         for(int id : idList){
             videoList.add(new RowData(formatTitle(id),id));
         }
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements VideoListRecycleV
 
     private String formatTitle(int id){
         String tmp = getResources().getResourceEntryName(id);
-        tmp = tmp.replace("_"," ");
+        tmp = COMPILE.matcher(tmp).replaceAll(Matcher.quoteReplacement(" "));
         tmp = tmp.substring(0, 1).toUpperCase() + tmp.substring(1).toLowerCase();
         return tmp;
     }

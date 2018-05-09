@@ -1,13 +1,11 @@
 package com.example.devwill.androidvideoplayerlisttest;
 
-import android.net.Uri;
-
 import com.example.devwill.androidvideoplayerlisttest.PlayList.RowData;
 
 import java.util.List;
 
 public class VideoList {
-    private static List<RowData> list;
+    private static List<RowData> list = null;
 
     public static List<RowData> getList() {
         return list;
