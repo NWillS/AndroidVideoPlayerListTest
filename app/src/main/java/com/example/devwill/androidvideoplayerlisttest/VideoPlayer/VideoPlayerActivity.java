@@ -45,6 +45,13 @@ public class VideoPlayerActivity extends AppCompatActivity {
                 prev();
             }
         });
+        videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                next();
+            }
+        });
         videoView.setMediaController(mc);
         play(position);
     }
