@@ -5,6 +5,7 @@ import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.MediaController;
 import android.widget.VideoView;
@@ -56,12 +57,6 @@ public class VideoPlayerActivity extends AppCompatActivity {
         play(position);
     }
 
-    @Override
-    protected void onPause() {
-        videoView.stopPlayback();
-        super.onPause();
-    }
-
     private void play(int row){
         RowData rowData = list.get(row);
         String path = "android.resource://" + getPackageName() + "/" + rowData.getId();
@@ -82,5 +77,13 @@ public class VideoPlayerActivity extends AppCompatActivity {
             row = playing - 1;
         }
         play(row);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK) {
+            videoView.stopPlayback();
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
