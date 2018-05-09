@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity implements VideoListRecycleViewAdapter.VideoAdapterListener {
 
-    private static final Pattern COMPILE = Pattern.compile("_", Pattern.LITERAL);
+    private static final Pattern UNDERBAR = Pattern.compile("_", Pattern.LITERAL);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements VideoListRecycleV
 
     private String formatTitle(int id){
         String tmp = getResources().getResourceEntryName(id);
-        tmp = COMPILE.matcher(tmp).replaceAll(Matcher.quoteReplacement(" "));
+        tmp = UNDERBAR.matcher(tmp).replaceAll(Matcher.quoteReplacement(" "));
         tmp = tmp.substring(0, 1).toUpperCase() + tmp.substring(1).toLowerCase();
         return tmp;
     }
