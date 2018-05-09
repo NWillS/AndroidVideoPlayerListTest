@@ -1,17 +1,19 @@
 package com.example.devwill.androidvideoplayerlisttest.PlayList;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.devwill.androidvideoplayerlisttest.R;
+import com.example.devwill.androidvideoplayerlisttest.VideoPlayer.VideoPlayerActivity;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements VideoListRecycleViewAdapter.VideoAdapterListener {
     private VideoListRecycleViewAdapter adapter;
     private List<RowData> videoList;
 
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
         RecyclerView rv = (RecyclerView) findViewById(R.id.recyclerView);
         adapter = new VideoListRecycleViewAdapter();
+        adapter.setListener(this);
 
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rv.setHasFixedSize(true);
@@ -46,5 +49,12 @@ public class MainActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
 
 
+    }
+
+    @Override
+    public void selectedVideo(int position) {
+        Intent intent = new Intent(getApplication(), VideoPlayerActivity.class);
+        intent.putExtra("position",position);
+        startActivity(intent);
     }
 }

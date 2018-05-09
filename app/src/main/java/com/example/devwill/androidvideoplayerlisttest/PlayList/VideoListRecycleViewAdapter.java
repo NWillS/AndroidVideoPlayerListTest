@@ -1,5 +1,6 @@
 package com.example.devwill.androidvideoplayerlisttest.PlayList;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +14,11 @@ import java.util.List;
 class VideoListRecycleViewAdapter extends RecyclerView.Adapter<VideoListViewHolder> {
     private List<RowData> videoList;
 
+    interface VideoAdapterListener {
+        void selectedVideo(int position);
+    }
+
+    private VideoAdapterListener listener;
 
     @NonNull
     @Override
@@ -24,6 +30,15 @@ class VideoListRecycleViewAdapter extends RecyclerView.Adapter<VideoListViewHold
     @Override
     public void onBindViewHolder(@NonNull final VideoListViewHolder holder, final int position) {
         holder.getVideoNameTextView().setText(videoList.get(position).getVideoName());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(listener != null){
+                    listener.selectedVideo(position);
+                }
+            }
+        });
     }
 
     @Override
@@ -32,5 +47,9 @@ class VideoListRecycleViewAdapter extends RecyclerView.Adapter<VideoListViewHold
     }
     public void setVideoList(List<RowData> videoList) {
         this.videoList = videoList;
+    }
+
+    public void setListener(VideoAdapterListener listener) {
+        this.listener = listener;
     }
 }
