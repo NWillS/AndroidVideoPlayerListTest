@@ -9,10 +9,11 @@ import com.example.devwill.androidvideoplayerlisttest.R;
 public class VideoListViewHolder extends RecyclerView.ViewHolder {
     private final TextView videoNameTextView;
 
-    public VideoListViewHolder(View itemView) {
+    VideoListViewHolder(View itemView) {
         super(itemView);
-        videoNameTextView = (TextView)itemView.findViewById(R.id.videoNameTextView);
+        videoNameTextView = (TextView) itemView.findViewById(R.id.videoNameTextView);
     }
+
     public TextView getVideoNameTextView() {
         return videoNameTextView;
     }

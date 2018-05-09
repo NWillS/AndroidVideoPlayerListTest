@@ -22,7 +22,7 @@ class VideoListRecycleViewAdapter extends RecyclerView.Adapter<VideoListViewHold
     @NonNull
     @Override
     public VideoListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.row, parent,false);
+        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.row, parent, false);
         return new VideoListViewHolder(inflate);
     }
 
@@ -33,7 +33,7 @@ class VideoListRecycleViewAdapter extends RecyclerView.Adapter<VideoListViewHold
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(listener != null){
+                if (listener != null) {
                     listener.selectedVideo(position);
                 }
             }
@@ -44,6 +44,7 @@ class VideoListRecycleViewAdapter extends RecyclerView.Adapter<VideoListViewHold
     public int getItemCount() {
         return videoList.size();
     }
+
     public void setVideoList(List<RowData> videoList) {
         this.videoList = videoList;
     }
