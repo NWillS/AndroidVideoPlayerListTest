@@ -27,7 +27,7 @@ class VideoListRecycleViewAdapter extends RecyclerView.Adapter<VideoListViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final VideoListViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull VideoListViewHolder holder, final int position) {
         holder.getVideoNameTextView().setText(videoList.get(position).getVideoName());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

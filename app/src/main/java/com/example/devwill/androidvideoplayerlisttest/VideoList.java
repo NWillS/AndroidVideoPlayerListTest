@@ -5,7 +5,7 @@ import com.example.devwill.androidvideoplayerlisttest.PlayList.RowData;
 import java.util.List;
 
 public class VideoList {
-    private static List<RowData> list = null;
+    private static List<RowData> list;
 
     public static List<RowData> getList() {
         return list;

@@ -10,10 +10,10 @@ public class RowData {
     }
 
     public String getVideoName() {
-        return this.videoName;
+        return videoName;
     }
 
     public int getId() {
-        return this.id;
+        return id;
     }
 }
